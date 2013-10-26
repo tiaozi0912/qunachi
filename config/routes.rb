@@ -55,4 +55,9 @@ Me::Application.routes.draw do
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
+  
+  resources :users
+  resources :user_sessions, :only => [:create]
+  match '/signin' => 'user_sessions#new'
+  match '/signout' => 'user_sessions#destroy'
 end

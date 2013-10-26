@@ -38,3 +38,6 @@ gem 'jquery-rails'
 # gem 'debugger'
 
 gem 'authlogic'
+
+gem 'bootstrap-sass', '~> 3.0.0.0.rc'
+
