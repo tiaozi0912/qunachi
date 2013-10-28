@@ -57,7 +57,14 @@ Me::Application.routes.draw do
   # match ':controller(/:action(/:id))(.:format)'
   
   resources :users
-  resources :user_sessions, :only => [:create]
+
+  resources :user_sessions do 
+    collection do 
+      get 'get_weibo_access_token'
+    end
+  end
+
   match '/signin' => 'user_sessions#new'
   match '/signout' => 'user_sessions#destroy'
+  root :to => 'users#home'
 end

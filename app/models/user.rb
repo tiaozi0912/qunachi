@@ -5,4 +5,11 @@ class User < ActiveRecord::Base
   	# pass config option if any
   	c.login_field = 'email'
   end
+
+  def self.auth_link
+  	return {
+  		#:weibo => "https://api.weibo.com/oauth2/authorize?client_id=#{WEIBO[:app_key]}&response_type=code&redirect_uri=#{WEIBO[:redirect_uri]}"
+  		:weibo => "https://api.weibo.com/oauth2/authorize?client_id=#{WEIBO[:app_key]}&response_type=code&redirect_uri=#{WEIBO[:redirect_uri]}"
+  	}
+  end
 end
