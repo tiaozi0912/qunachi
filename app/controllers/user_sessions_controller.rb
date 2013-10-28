@@ -1,7 +1,7 @@
 require 'rest_client'
 require 'json' 
 
-class UserSessionsController < ApplicationController
+class UserSessionsController < AuthController
   #before_filter :require_no_user, :only => [:new, :create]
   #before_filter :require_user, :only => :destroy
   def new
@@ -36,7 +36,13 @@ class UserSessionsController < ApplicationController
       :code => @code
     }
     RestClient.post(@endpoint, @params) { |response, request, result|
-      render :json => response
+      response = JSON.parse(response)
+      @access_token = response["access_token"]
+      if @access_token.nil?
+        #handle error
+      else
+        signin_or_create_with_weibo @access_token, response["uid"].to_i, user_profile_path, root_path
+      end
     }
   end
 end

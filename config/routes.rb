@@ -56,11 +56,16 @@ Me::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
   
-  resources :users
+  resources :users do 
+    collection do 
+      get 'profile'
+    end
+  end
 
   resources :user_sessions do 
     collection do 
       get 'get_weibo_access_token'
+      get 'get_renren_access_token'
     end
   end
 

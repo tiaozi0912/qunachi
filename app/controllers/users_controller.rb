@@ -5,6 +5,10 @@ class UsersController < ApplicationController
   def home
   end
 
+  def profile
+    @user = current_user
+  end
+
   def index
   	@users = User.all
   end

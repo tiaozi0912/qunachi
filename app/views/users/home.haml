@@ -1,4 +1,6 @@
 .container
-  %ul
+  %ul.nav.nav-pills.nav-stacked
     %li 
       = link_to "weibo auth", User.auth_link[:weibo]
+    %li
+      = link_to "renren auth", User.auth_link[:renren]
