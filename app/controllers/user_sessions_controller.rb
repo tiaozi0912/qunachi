@@ -21,28 +21,30 @@ class UserSessionsController < AuthController
   
   def destroy
     current_user_session.destroy
-    flash[:notice] = "Logout successful!"
-    redirect_to users_path
+    flash[:'alert-success'] = "Logout successful!"
+    redirect_to root_path
   end
 
   def get_weibo_access_token
-    @code = params[:code]
-    @endpoint = "https://api.weibo.com/oauth2/access_token"
-    @params = {
-      :client_id => WEIBO[:app_key],
-      :client_secret => WEIBO[:app_secret],
-      :grant_type => 'authorization_code',
-      :redirect_uri => WEIBO[:redirect_uri],
-      :code => @code
-    }
-    RestClient.post(@endpoint, @params) { |response, request, result|
-      response = JSON.parse(response)
-      @access_token = response["access_token"]
-      if @access_token.nil?
-        #handle error
-      else
-        signin_or_create_with_weibo @access_token, response["uid"].to_i, user_profile_path, root_path
-      end
-    }
+    @code = params["code"]
+    if @code.nil?
+      #handle error
+      flash[:'alert-error'] = params["error"]
+      redirect_to root_path
+    else
+      get_access_token_and_signin "WEIBO", @code
+    end
   end
+
+  def get_renren_access_token
+    @code = params["code"]
+    if @code.nil?
+      #handle error
+      flash[:'alert-error'] = params["error"]
+      redirect_to root_path
+    else
+      get_access_token_and_signin "RENREN", @code
+    end
+  end
+  
 end

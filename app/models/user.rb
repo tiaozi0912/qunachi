@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   def self.auth_link
   	return {
   		:weibo => "https://api.weibo.com/oauth2/authorize?client_id=#{WEIBO[:app_key]}&response_type=code&redirect_uri=#{WEIBO[:redirect_uri]}",
-      :renrern => ""
+      :renren => "https://graph.renren.com/oauth/authorize?client_id=#{RENREN[:app_key]}&response_type=code&redirect_uri=#{RENREN[:redirect_uri]}&scope=read_user_feed"
   	}
   end
 
