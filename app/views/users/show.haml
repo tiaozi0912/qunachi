@@ -1,0 +1,21 @@
+.row{:'ng-app' => 'App'}
+  .col-xs-12.col-sm-2.sidebar
+    %ul.nav.nav-pills.nav-stacked
+      %li.active
+        = link_to "人人","#renren"
+      %li
+        = link_to "微博", "#weibo"
+      %li 
+        = link_to "FB", "#fb"
+  .col-xs-12.col-sm-10.main-content-container
+    %div{:'ng-view' => true}
+
+
+
+
+
+
+:javascript
+  $('.sidebar').height($(window).height());
+
+  

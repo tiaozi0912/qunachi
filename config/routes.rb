@@ -62,6 +62,9 @@ Me::Application.routes.draw do
     end
   end
 
+  get 'user', to: 'users#show'
+  get 'get_renren_feeds', to: 'users#get_renren_feeds'
+
   resources :user_sessions do 
     collection do 
       get 'get_weibo_access_token'

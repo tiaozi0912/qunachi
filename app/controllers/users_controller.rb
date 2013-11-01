@@ -1,3 +1,6 @@
+require 'rest_client'
+require 'json'
+
 class UsersController < ApplicationController
   #before_filter :require_no_user, :only => [:new, :create]
   #before_filter :require_user, :only => [:show, :edit, :update]
@@ -28,7 +31,15 @@ class UsersController < ApplicationController
   end
   
   def show
-    @user = User.find_by_id params[:id]
+    @user = current_user
+  end
+
+  def get_renren_feeds
+    @user = current_user
+    @url = "https://api.renren.com/v2/feed/list"
+    RestClient.get(@url, :params => {:access_token => @user.renren_access_token}) { |response, request, result|
+      render :json => JSON.parse(response)
+    }
   end
 
   def edit
