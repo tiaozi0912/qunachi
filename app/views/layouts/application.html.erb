@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Me</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title><%= @title || '去哪吃' %></title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body class=<%= @body_class %>>
   <div class="container">
     <% flash.each do |key, value| %>
       <div class="flash-container">

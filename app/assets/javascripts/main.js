@@ -43,6 +43,7 @@
       $scope.selected.category = category;
       $scope.navs.selected = "地点";
       $scope.step = 1;
+      $scope.navs.list[0] = category.name;
     }
 
     $scope.selectCity = function(city, e) {
@@ -50,6 +51,7 @@
       $scope.selected.city = city;
       $scope.navs.selected = "餐馆";
       $scope.step = 2;
+      $scope.navs.list[1] = city.name;
 
       $http.get("/restaurants", {params: {city: $scope.selected.city.name, category: $scope.selected.category.name}}).success(function(res) {
         //preprocess data

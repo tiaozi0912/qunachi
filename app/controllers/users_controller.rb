@@ -12,6 +12,7 @@ class UsersController < ApplicationController
   end
 
   def home
+    @body_class = "search-page"
   end
 
   def profile

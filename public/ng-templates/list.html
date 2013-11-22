@@ -1,20 +1,23 @@
-<nav class="nav col-sm-12">
-  <ul>
-    <li ng-repeat="li in navs.list">{{li}}</li>
+<nav class="navbar navbar-fixed-top navbar-default" role="navigation">
+  <ul class="nav navbar-nav row">
+    <li ng-repeat="li in navs.list" class="col-xs-4">
+      <a href="#" ng-class="{active: li == navs.selected}">{{li}}</a>
+    </li>
   </ul>
 </nav>
+
 <section class="select-categories" ng-show = "step == 0">
   <ul>
-    <li ng-repeat="category in data.categories">
-      <a href="#" ng-click="selectCategory(category, $event)">{{category.name}}</a>
+    <li ng-repeat="category in data.categories" ng-click="selectCategory(category, $event)">
+      <span class="text-info">{{category.name}}</span>
     </li>
   </ul>
 </section>
 
 <section class="select-cities" ng-show = "step == 1">
   <ul>
-    <li ng-repeat="city in data.cities">
-      <a href="#" ng-click="selectCity(city, $event)">{{city.name}}</a>
+    <li ng-repeat="city in data.cities" ng-click="selectCity(city, $event)">
+      <span class="text-info">{{city.name}}</span>
     </li>
   </ul>
 </section>
