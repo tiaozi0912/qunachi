@@ -1,0 +1,28 @@
+<nav class="nav col-sm-12">
+  <ul>
+    <li ng-repeat="li in navs.list">{{li}}</li>
+  </ul>
+</nav>
+<section class="select-categories" ng-show = "step == 0">
+  <ul>
+    <li ng-repeat="category in data.categories">
+      <a href="#" ng-click="selectCategory(category, $event)">{{category.name}}</a>
+    </li>
+  </ul>
+</section>
+
+<section class="select-cities" ng-show = "step == 1">
+  <ul>
+    <li ng-repeat="city in data.cities">
+      <a href="#" ng-click="selectCity(city, $event)">{{city.name}}</a>
+    </li>
+  </ul>
+</section>
+
+<section class="select-cities" ng-show = "step == 2">
+  <ul>
+    <li ng-repeat="r in data.restaurants">
+      <a href="{{r.link}}">{{r.name}}</a>
+    </li>
+  </ul>
+</section>

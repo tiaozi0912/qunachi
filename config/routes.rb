@@ -59,6 +59,7 @@ Me::Application.routes.draw do
   resources :users do 
     collection do 
       get 'profile'
+      get 'categories_cities'
     end
   end
 
@@ -71,6 +72,15 @@ Me::Application.routes.draw do
       get 'get_renren_access_token'
     end
   end
+
+  resources :restaurants do 
+    collection do 
+      get 'load_sheet_to_database'
+    end
+  end
+
+  resources :categories
+  resources :cities
 
   match '/signin' => 'user_sessions#new'
   match '/signout' => 'user_sessions#destroy'

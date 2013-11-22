@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  city: MyString
+  state: MyString
+  address: MyString
+  secondary_name: MyString
+  phone: MyString
+  category: MyString
+  labels: MyString
+  description: MyString
+  zip: MyString
+  rating: 1
+
+two:
+  name: MyString
+  city: MyString
+  state: MyString
+  address: MyString
+  secondary_name: MyString
+  phone: MyString
+  category: MyString
+  labels: MyString
+  description: MyString
+  zip: MyString
+  rating: 1

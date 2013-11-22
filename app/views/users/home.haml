@@ -1,5 +1,6 @@
-.container
-  %ul.nav.nav-pills.nav-stacked
+.container{:"ng-app" => "qunachiApp", :"ng-ctrl" => "qunachiCtr"}
+  .view{:"ng-view" => true}
+  -#%ul.nav.nav-pills.nav-stacked
     %li 
       = link_to "weibo auth", User.auth_link[:weibo]
     %li

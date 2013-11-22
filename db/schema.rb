@@ -11,7 +11,44 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131028170241) do
+ActiveRecord::Schema.define(:version => 20131121181727) do
+
+  create_table "categories", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "categories", ["name"], :name => "index_categories_on_name"
+
+  create_table "cities", :force => true do |t|
+    t.string   "name"
+    t.string   "state"
+    t.string   "zip"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "cities", ["name", "state"], :name => "index_cities_on_name_and_state"
+
+  create_table "restaurants", :force => true do |t|
+    t.string   "name",           :null => false
+    t.string   "city"
+    t.string   "state"
+    t.string   "address"
+    t.string   "secondary_name"
+    t.string   "phone"
+    t.string   "category"
+    t.string   "labels"
+    t.string   "description"
+    t.string   "zip"
+    t.integer  "rating"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "restaurants", ["city", "category", "rating"], :name => "index_restaurants_on_city_and_category_and_rating"
+  add_index "restaurants", ["name"], :name => "index_restaurants_on_name"
 
   create_table "users", :force => true do |t|
     t.string   "name"

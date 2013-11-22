@@ -13,5 +13,8 @@
 //= require angular.min.js
 //= require jquery
 //= require jquery_ujs
+//= require Underscore
 //= require bootstrap
+//= require freewall
 //= require users
+//= require main

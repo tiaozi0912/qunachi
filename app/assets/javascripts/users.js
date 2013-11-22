@@ -5,7 +5,7 @@
 		return {
 			async: function() {
 				var promise = $http.get('/get_renren_feeds').then(function(data) {
-  	      return data.data.response;
+  	      return data.data;
   	    });
 
   	    return promise;
@@ -23,7 +23,19 @@
 
 	app.controller('RenrenCtrl', ['$scope', 'RenrenFeeds', function($scope, RenrenFeeds) {
     RenrenFeeds.async().then(function(data) {
-      console.log(data);
+      $scope.feeds = data.response;
+
+      console.log($scope.feeds);
+
+      var wall = new freewall('.main-content-container');
+      wall.reset({
+        selector: '.feed-container',
+        animate: true,
+        onResize: function() {
+          wall.fitWidth();
+        }
+      });
+      wall.fitWidth();
     });
 	}]);
 
