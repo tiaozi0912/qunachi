@@ -1,0 +1,47 @@
+.container{:'ng-controller' => "ctrl"}
+  %table.table
+    %thead 
+      %tr
+        %th name
+        %th address
+        %th category
+        %th description
+        %th rating
+        %th labels
+    %tbody
+      %tr{:"ng-repeat" => "r in restaurants", :"ng-mouseenter" => "showBtnContainer = true", :"ng-mouseleave" => "showBtnContainer = false"}
+        %td {{r.name}}
+        %td {{r.city}}
+        %td {{r.category}}
+        %td {{r.description}}
+        %td {{r.rating}}
+        %td 
+          {{r.labels}}
+          .btn-container.btn-group.btn-group-xs{:"ng-show" => "showBtnContainer"}
+            %a.btn.btn-primary.btn-edit{:href => "/admin/restaurants/{{r.id}}/edit"} edit
+            %a.btn.btn-delete.btn-danger{:'ng-click' => 'delete(r, $event)', :href => '/admin/restaurants/{{r.id}}'} delete
+
+:javascript
+  angular.module('qunachiApp', [])
+    .controller('ctrl', ['$scope', function($scope) {
+      var url = '/admin/restaurants/list';
+
+      $.get(url, function(data) {
+        $scope.restaurants = data;
+        $scope.$apply();
+      });
+
+      $scope.delete = function(r, e) {
+        e.preventDefault();
+        var target = e.currentTarget;
+        $.ajax({
+          type: 'DELETE',
+          url: $(target).attr('href'),
+          success: function(res) {
+            $(target).parents('tr').remove();
+          }
+        });
+      }
+    }]);
+
+  

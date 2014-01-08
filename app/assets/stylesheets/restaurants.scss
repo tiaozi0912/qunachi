@@ -2,9 +2,10 @@
 
 .search-page {
 	.navbar {
+    margin-bottom: 0;
+    
     ul {
-      margin-top: 0;
-      margin-bottom: 0;
+      margin: 0;
 
     	li {
         margin-top: 0;
@@ -14,13 +15,15 @@
         a {
           padding-top: 0;
           padding-bottom: 0;
-          line-height: 45px;
+          line-height: 44px;
           white-space: nowrap;
+           overflow: hidden;
+          text-overflow: ellipsis;
         }
 
 	    	a.active:after {
 	        content: "";
-	        width: 60%;
+	        width: 50%;
 	        height: 5px;
 	        background-color: $orange;
 	        display: block;
@@ -36,9 +39,10 @@
     }
 
     li {
-      padding: 15px 0 15px 20px;
+      padding: 15px 0;
       border-bottom: 1px solid #ddd;
       cursor: pointer;
+      text-align: center;
 
       &:last-child {
         border-bottom-width: 0;

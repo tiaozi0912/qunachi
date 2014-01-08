@@ -18,3 +18,4 @@
 //= require freewall
 //= require users
 //= require main
+//= require qunachi-app

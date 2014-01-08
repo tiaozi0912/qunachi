@@ -1,7 +1,39 @@
+@import "palette";
+
 body {
-	padding-top: 50px;
+	//padding-top: 50px;
 }
 
 ul {
   list-style: none;
+}
+
+header {
+	height: 40px;
+	background-color: $tuiquoise;
+	text-align: center;
+	color: white;
+	position: relative;
+  
+  .header-inner {
+  	padding: 12px 20px 0;
+  }
+
+  .search-icon-container {
+  	i {
+  		cursor: pointer;
+  	}
+  }
+}
+
+.fixed {
+	position: fixed;
+	top: 0;
+}
+
+.search-input-container {
+  z-index: 1050;
+  position: absolute;
+  bottom: -30px;
+  left: 0;	
 }

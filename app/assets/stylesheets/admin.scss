@@ -1,0 +1,27 @@
+@import "palette";
+
+.restaurants-admin {
+	tbody {
+		tr {
+			&:hover {
+	      background-color: $cloud;
+			}
+
+			td:last-child {
+				position: relative;
+			}
+		}
+	}
+
+	.btn-container {
+		position: absolute;
+		top: 0;
+		right: 0;
+	}
+}
+
+.restaurants-new-admin, .restaurants-edit-admin {
+	form {
+		margin-top: 20px;
+	}
+}

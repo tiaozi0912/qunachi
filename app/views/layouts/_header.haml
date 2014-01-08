@@ -1,0 +1,12 @@
+%header
+  .header-inner
+    .pull-left
+    %span.logo-text 去哪吃
+    .pull-right
+      .search-icon-container
+        %i.glyphicon.glyphicon-search{:"ng-click" => "showSearchInput = true", :"ng-hide" => "showSearchInput"}
+        %span{:"ng-click" => "showSearchInput = false", :"ng-show" => "showSearchInput"} 取消
+  .search-input-container.input-group{:"ng-show" => "showSearchInput"}
+    %span.input-group-addon
+      %i.glyphicon.glyphicon-search
+    %input.form-control{:type => "text", :"ng-model" => "search", :placeholder => "输入想搜的关键字"}

@@ -5,6 +5,10 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user_session, :current_user
 
+  def admin_auth
+    
+  end
+
   private
 
   def current_user_session

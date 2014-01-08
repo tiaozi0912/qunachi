@@ -1,7 +1,7 @@
-<nav class="navbar navbar-fixed-top navbar-default" role="navigation">
+<nav class="navbar navbar-default sticky" role="navigation">
   <ul class="nav navbar-nav row">
     <li ng-repeat="li in navs.list" class="col-xs-4">
-      <a href="#" ng-class="{active: li == navs.selected}">{{li}}</a>
+      <a ng-class="{active: li == navs.selected}">{{li}}</a>
     </li>
   </ul>
 </nav>
@@ -24,8 +24,16 @@
 
 <section class="select-cities" ng-show = "step == 2">
   <ul>
+    <li ng-hide="data.restaurants.length > 0">暂时没找到匹配的， 亲！</li>
     <li ng-repeat="r in data.restaurants">
       <a href="{{r.link}}">{{r.name}}</a>
     </li>
   </ul>
+  <a class="btn btn-block btn-primary" ng-click="back()">返回</a>
 </section>
+
+<script>
+  $('.sticky').sticky({
+    offset: $('header')
+  });
+</script>
