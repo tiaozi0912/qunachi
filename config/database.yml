@@ -15,7 +15,7 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: me_development
+  database: qunachi_development
   pool: 5
   username: 
   password:
@@ -41,7 +41,7 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: me_test
+  database: qunachi_test
   pool: 5
   username: 
   password:
@@ -51,7 +51,7 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  database: me_production
+  database: qunachi_production
   pool: 5
   username:
   password:

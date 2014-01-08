@@ -3,16 +3,19 @@ class Restaurant < ActiveRecord::Base
 
   validates :name, :presence => true
 
+  belongs_to :city, :primary_key => :name, :foreign_key => :city
+
   def to_json 
+    @city = city
   	{
   		:category => category,
-  		:city => city,
+  		:city => @city.name,
   		:description => description,
   		:id => id,
   		:name => name,
   		:address => address,
-  		:state => state,
-  		:zip => zip,
+  		:state => @city.state,
+  		:zip => @city.zip,
   		:secondary_name => secondary_name,
   		:rating => rating, 
   		:labels => labels
