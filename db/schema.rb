@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131121181727) do
+ActiveRecord::Schema.define(:version => 20140108054055) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(:version => 20131121181727) do
 
   create_table "restaurants", :force => true do |t|
     t.string   "name",           :null => false
-    t.string   "city"
+    t.string   "city_name"
     t.string   "state"
     t.string   "address"
     t.string   "secondary_name"
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(:version => 20131121181727) do
     t.datetime "updated_at",     :null => false
   end
 
-  add_index "restaurants", ["city", "category", "rating"], :name => "index_restaurants_on_city_and_category_and_rating"
+  add_index "restaurants", ["city_name", "category", "rating"], :name => "index_restaurants_on_city_and_category_and_rating"
   add_index "restaurants", ["name"], :name => "index_restaurants_on_name"
 
   create_table "users", :force => true do |t|

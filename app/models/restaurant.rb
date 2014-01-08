@@ -1,15 +1,17 @@
 class Restaurant < ActiveRecord::Base
-  attr_accessible :address, :category, :city, :description, :labels, :name, :phone, :rating, :secondary_name, :state, :zip
+  ### state, zip should never be used ###
+  attr_accessible :address, :category, :city_name, :description, :labels, :name, :phone, :rating, :secondary_name, :state, :zip
 
   validates :name, :presence => true
+  validates :city_name, :presence => true
 
-  belongs_to :city, :primary_key => :name, :foreign_key => :city
+  belongs_to :city, :primary_key => :name, :foreign_key => :city_name
 
   def to_json 
     @city = city
   	{
   		:category => category,
-  		:city => @city.name,
+  		:city => city_name,
   		:description => description,
   		:id => id,
   		:name => name,

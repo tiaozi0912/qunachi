@@ -11,7 +11,7 @@
     %tbody
       %tr{:"ng-repeat" => "r in restaurants", :"ng-mouseenter" => "showBtnContainer = true", :"ng-mouseleave" => "showBtnContainer = false"}
         %td {{r.name}}
-        %td {{r.city}}
+        %td {{r.address}}, {{r.city}}
         %td {{r.category}}
         %td {{r.description}}
         %td {{r.rating}}

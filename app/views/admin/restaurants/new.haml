@@ -14,7 +14,7 @@
       = f.text_field :address, :class => "form-control"
     .form-group
       = f.label 'city'
-      = f.select :city, options_for_select(City.all.map(&:name), @r.city), {}, :class => "form-control"
+      = f.select :city_name, options_for_select(City.all.map(&:name), @r.city_name), {}, :class => "form-control"
     .form-group
       = f.label 'description'
       = f.text_field :description, :class => "form-control", :placeholder => "optional"
