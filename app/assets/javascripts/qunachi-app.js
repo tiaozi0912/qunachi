@@ -21,7 +21,7 @@
    app.config(function($routeProvider) {
     $routeProvider.
       when('/', {controller: 'SelectCtrl', templateUrl: '/ng-templates/list.html'}).
-      when('/restaurants/:id', {controller: 'RestaurantsCtrl', templateUrl: '/ng-templates/restaurant.html'}).
+      when('/restaurants/:id', {controller: 'RestaurantCtrl', templateUrl: '/ng-templates/restaurant.html'}).
       otherwise({redirectTo: '/'});
   });
 
@@ -73,21 +73,16 @@
 
   }]);
 
-  app.controller('RestaurantsCtrl', ['$scope', '$http', 'navMapping', function($scope, $http, navMapping) {
+  app.controller('RestaurantCtrl', ['$scope', '$http', '$routeParams','navMapping', function($scope, $http, $routeParams, navMapping) {
     $scope.navs = {
       list: navMapping.list,
       selected: "地点",
     };
 
-    var url = "/categories/" + $routeParams.id + "/cities";
+    var url = "/restaurants/" + $routeParams.id;
 
     $http.get(url).success(function(data) {
-      //preprocess data
-      _.each(data, function(d) {
-        d.link = '#/categories/' + d.id;
-      });
-
-      $scope.data = data;
+      $scope.r = data.restaurant;
     });
   }]);
 

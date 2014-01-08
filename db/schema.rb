@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(:version => 20140108054055) do
     t.string   "address"
     t.string   "secondary_name"
     t.string   "phone"
-    t.string   "category"
+    t.string   "category_name"
     t.string   "labels"
     t.string   "description"
     t.string   "zip"
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(:version => 20140108054055) do
     t.datetime "updated_at",     :null => false
   end
 
-  add_index "restaurants", ["city_name", "category", "rating"], :name => "index_restaurants_on_city_and_category_and_rating"
+  add_index "restaurants", ["city_name", "category_name", "rating"], :name => "index_restaurants_on_city_and_category_and_rating"
   add_index "restaurants", ["name"], :name => "index_restaurants_on_name"
 
   create_table "users", :force => true do |t|

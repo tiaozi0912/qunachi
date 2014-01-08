@@ -9,7 +9,7 @@ class Admin::RestaurantsController < ApplicationController
     @r_created = []
     @restaurants.each do |r|
     	@r_exist = Restaurant.find_by_name(r["name"])
-    	if @r_exit.nil? || @r.city_name != r["city"]
+    	if @r_exit.nil? || @r.city_name != r["city_name"]
     		#@r = {}
     		#r.each {|k, v| @r[k.to_sym] = v}
     		@r_new = Restaurant.create(r)
@@ -17,8 +17,8 @@ class Admin::RestaurantsController < ApplicationController
     	else
     		@r_exist.update_attribtues(r)
     	end
-    	Category.create(:name => r["category"]) if Category.find_by_name(r["category"]).nil?
-    	City.create(:city_name => r["city"], :state => r["state"], :zip => r["zip"]) if City.find_by_name(r["city"]).nil?
+    	Category.create(:name => r["category_name"]) if Category.find_by_name(r["category_name"]).nil?
+    	City.create(:name => r["city_name"], :state => r["state"], :zip => r["zip"]) if City.find_by_name(r["city_name"]).nil?
     end
 
     render :json => @r_created

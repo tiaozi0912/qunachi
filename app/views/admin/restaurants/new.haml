@@ -8,7 +8,7 @@
       = f.text_field :secondary_name, :class => "form-control", :placeholder => "optional"
     .form-group
       = f.label 'category'
-      = f.select :category, options_for_select(Category.all.map(&:name), @r.category), {}, :class => 'form-control'
+      = f.select :category_name, options_for_select(Category.all.map(&:name), @r.category_name), {}, :class => 'form-control'
     .form-group
       = f.label 'address'
       = f.text_field :address, :class => "form-control"

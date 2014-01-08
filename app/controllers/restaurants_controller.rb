@@ -9,4 +9,11 @@ class RestaurantsController < ApplicationController
       :restaurants => @restaurants.map {|r| r.to_json}
     }
   end
+
+  def show
+  	@r = Restaurant.find_by_id params[:id]
+  	render :json => {
+  		:restaurant => @r.to_json
+  	}
+  end
 end

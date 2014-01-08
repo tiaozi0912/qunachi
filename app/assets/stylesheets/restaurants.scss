@@ -34,12 +34,14 @@
 	}
 
   .view section {
+    $padding: 15px;
+
     ul {
       padding: 0;
     }
 
     li {
-      padding: 15px 0;
+      padding: $padding 0;
       border-bottom: 1px solid #ddd;
       cursor: pointer;
       text-align: center;
@@ -50,6 +52,22 @@
 
       &:hover {
         background-color: #eee;
+      }
+
+      .small {
+        color: $gray;
+      }
+    }
+
+    &.select-restaurant {
+      li {
+        padding: 0;
+
+        a {
+          text-decoration: none;
+          display: block;
+          padding: $padding 0;
+        }
       }
     }
   }
