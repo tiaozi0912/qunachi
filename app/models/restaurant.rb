@@ -11,7 +11,7 @@ class Restaurant < ActiveRecord::Base
   def to_json 
     @city = city
   	{
-  		:category => category,
+  		:category => category_name,
   		:city => city_name,
   		:description => description,
   		:id => id,

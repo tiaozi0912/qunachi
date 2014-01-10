@@ -1,6 +1,8 @@
-%header
+%header{:"ng-controller" => "HeaderCtrl"}
   .header-inner
     .pull-left
+      %a{:href => "{{sharedService.backBtn.link}}", :"ng-show" => "sharedService.backBtn.show", :"ng-click" => "sharedService.backBtn.action($event)"} 
+        %i.glyphicon.glyphicon-chevron-left
     %span.logo-text 去哪吃
     .pull-right
       .search-icon-container

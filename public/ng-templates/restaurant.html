@@ -1,4 +1,13 @@
 <section class="restaurant-section">
-	<h3>{{r.name}}</h3>
-	<h5 class="text-info">{{r.category_name}}</h5>
+	<div class="container">
+		<div class="heading">
+			<h3>{{r.name}}</h3>
+			<h5 class="text-info">{{r.category}}</h5>
+		</div>
+		<div class="address">
+			<p>
+				{{r.address}}, {{r.city}}, {{r.state}}
+			</p>
+		</div>
+	</div>
 </section>

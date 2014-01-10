@@ -26,13 +26,12 @@
   <ul>
     <li ng-hide="data.restaurants.length > 0">暂时没找到匹配的， 亲！</li>
     <li ng-repeat="r in data.restaurants">
-      <a href="{{r.link}}">
+      <a href="{{r.link}}" ng-click="selectRestaurant($event)">
         <span>{{r.name}}</span> <br>
         <span class="small">{{r.address}}, {{r.city}}</span>
       </a>
     </li>
   </ul>
-  <a class="btn btn-block btn-primary" ng-click="back()">返回</a>
 </section>
 
 <script>

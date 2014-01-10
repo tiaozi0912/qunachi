@@ -13,6 +13,7 @@
 //= require angular.min.js
 //= require jquery
 //= require jquery_ujs
+//= require jstorage
 //= require Underscore
 //= require bootstrap
 //= require freewall
