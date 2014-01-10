@@ -36,7 +36,7 @@
       },
       selection: {},
       step: 0,
-      prepForBroadcast: function(backBtn, step, selection) {
+      prepForBroadcast: function(backBtn, step, selection) { //sync with other controllers
         var _this = this;
 
         $.extend(_this.backBtn, backBtn);
@@ -83,12 +83,6 @@
       $scope.selected = {};
       $scope.step = 0;
     }
-
-    function saveToLocalStorage(selection) {
-      var app = $.jStorage.get('qunachi') || {};
-      app.selection = selection;
-      $.jStorage.set('qunachi', app);
-    }
     
     SharedService.init($scope);
     init();
@@ -110,9 +104,6 @@
         action: function (e) {
           e.preventDefault();
           SharedService.back($scope);
-          // $scope.navs.selected = navMapping.list[0];
-          // $scope.step = 0;
-          // $scope.navs.list[0] = navMapping.list[0];
         }
       }, $scope.step);
     };
@@ -124,18 +115,10 @@
       $scope.step = 2;
       $scope.navs.list[1] = city.name;
 
-      // saveToLocalStorage({
-      //   city: $scope.selected.city,
-      //   category: $scope.selected.category
-      // });
-
       SharedService.prepForBroadcast({
         action: function (e) {
           e.preventDefault();
           SharedService.back($scope);
-          // $scope.navs.selected = navMapping.list[1];
-          // $scope.step = 1;
-          // $scope.navs.list[1] = navMapping.list[1];
         }
       }, $scope.step);
 
@@ -150,6 +133,13 @@
   }]);
 
   app.controller('RestaurantCtrl', ['$scope', '$http', '$routeParams', 'SharedService', 'navMapping', function($scope, $http, $routeParams, SharedService, navMapping) {
+    SharedService.init($scope);
+    
+    //TODO: just back to the previous step
+    SharedService.prepForBroadcast({
+      action: function(e) {}
+    }, 3);
+
     var url = "/restaurants/" + $routeParams.id;
 
     $http.get(url).success(function(data) {
