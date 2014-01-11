@@ -1,14 +1,15 @@
 %header{:"ng-controller" => "HeaderCtrl"}
   .header-inner
     .pull-left
-      %a{:href => "{{sharedService.backBtn.link}}", :"ng-show" => "sharedService.backBtn.show", :"ng-click" => "sharedService.backBtn.action($event)"} 
+      %a{:href => "{{sharedService.backBtn.link}}", :"ng-show" => "sharedService.step > 0", :"ng-click" => "sharedService.backBtn.action($event)"} 
         %i.glyphicon.glyphicon-chevron-left
     %span.logo-text 去哪吃
     .pull-right
       .search-icon-container
-        %i.glyphicon.glyphicon-search{:"ng-click" => "showSearchInput = true", :"ng-hide" => "showSearchInput"}
-        %span{:"ng-click" => "showSearchInput = false", :"ng-show" => "showSearchInput"} 取消
+        %i.glyphicon.glyphicon-search.icon{:"ng-click" => "showSearchInput = true", :"ng-hide" => "showSearchInput"}
+        %span.hover{:"ng-click" => "showSearchInput = false", :"ng-show" => "showSearchInput"} 取消
   .search-input-container.input-group{:"ng-show" => "showSearchInput"}
+    %input.form-control{:type => "text", :"ng-model" => "keywords", :placeholder => "输入想搜的关键字"}
     %span.input-group-addon
-      %i.glyphicon.glyphicon-search
-    %input.form-control{:type => "text", :"ng-model" => "search", :placeholder => "输入想搜的关键字"}
+      %i.glyphicon.glyphicon-search.icon{:"ng-click" => "search(keywords)"}
+        

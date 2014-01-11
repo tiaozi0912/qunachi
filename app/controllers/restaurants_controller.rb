@@ -16,4 +16,14 @@ class RestaurantsController < ApplicationController
   		:restaurant => @r.to_json
   	}
   end
+
+  def search
+  	# search category_name, city_name and name
+  	@keywords = params[:keywords]
+  	#@restaurants = Restaurant.all
+  	@restaurants = Restaurant.where("category_name LIKE ? or city_name LIKE ? or name LIKE ?", "%#{@keywords}%", "%#{@keywords}%", "%#{@keywords}%")
+   	render :json => {
+      :restaurants => @restaurants.map {|r| r.to_json}
+    }
+  end
 end

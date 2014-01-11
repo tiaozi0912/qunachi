@@ -16,7 +16,11 @@ Me::Application.routes.draw do
     end
   end
 
-  resources :restaurants
+  resources :restaurants do 
+    collection do 
+      get 'search'
+    end
+  end
 
   resources :categories
   resources :cities

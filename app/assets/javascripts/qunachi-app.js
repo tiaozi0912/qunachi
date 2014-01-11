@@ -28,7 +28,6 @@
 
     var sharedObj = {
       backBtn: {
-        show: false,
         link: "#",
         action: function() {
 
@@ -65,11 +64,20 @@
     $routeProvider.
       when('/', {controller: 'SelectCtrl', templateUrl: '/ng-templates/list.html'}).
       when('/restaurants/:id', {controller: 'RestaurantCtrl', templateUrl: '/ng-templates/restaurant.html'}).
+      when('/search/:keywords', {controller: 'SearchCtrl', templateUrl: '/ng-templates/search_results.html'}).
       otherwise({redirectTo: '/'});
   });
 
-  app.controller('HeaderCtrl', ['$scope', 'SharedService', function($scope, SharedService) {
+  app.controller('HeaderCtrl', ['$scope', '$location', 'SharedService', function($scope, $location, SharedService) {
     SharedService.init($scope);
+
+    $scope.search = function(keywords) {
+      $scope.showSearchInput = false;
+
+      var path = '/search/' + keywords;
+      $location.path(path);
+    };
+
   }]);
 
   app.controller('SelectCtrl', ['$scope', '$http', 'navMapping', 'SharedService', function($scope, $http, navMapping, SharedService) {
@@ -99,7 +107,6 @@
       $scope.navs.list[0] = category.name;
 
       SharedService.prepForBroadcast({
-        show: true,
         link: "#",
         action: function (e) {
           e.preventDefault();
@@ -145,6 +152,17 @@
     $http.get(url).success(function(data) {
       $scope.r = data.restaurant;
     });
+  }]);
+
+  app.controller('SearchCtrl', ['$scope', '$routeParams', function($scope, $routeParams) {
+    var keywords = $routeParams.keywords,
+        url = '/restaurants/search';
+
+    $.get(url, {keywords: keywords}, function(data) {
+      $scope.restaurants = data.restaurants;
+      $scope.$apply();
+    });
+
   }]);
 
 })();
