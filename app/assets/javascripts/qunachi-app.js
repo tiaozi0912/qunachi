@@ -35,14 +35,24 @@
       },
       selection: {},
       step: 0,
-      prepForBroadcast: function(backBtn, step, selection) { //sync with other controllers
+      prepForBroadcast: function(backBtn, step, selection) { 
+        //sync with other controllers
+        //step: the current step; 
+        //backBtn: set the link of the btn and action; action will be called when the back btn is clicked
         var _this = this;
+        
+        if (backBtn !== null && typeof backBtn !== 'undefined') {
+          $.extend(_this.backBtn, backBtn);
+        }
+        
+        if (step !== null && typeof step !== 'undefined') {
+          _this.step = step;
+        }
 
-        $.extend(_this.backBtn, backBtn);
-        _this.step = step;
         if (!_.isEmpty(selection)) {
           _this.selection = selection;
         }
+
         $rootScope.$broadcast('nextStep');
       },
       init: function(scope) {
@@ -50,10 +60,12 @@
         onBroadcast(scope, this);
       },
       back: function(scope) {
-        this.step -= 1;
-        scope.navs.selected = navMapping.list[this.step];
-        scope.step = this.step;
-        scope.navs.list[this.step] = navMapping.list[this.step];
+        if (this.step > 0) {
+          this.step -= 1;
+          scope.navs.selected = navMapping.list[this.step];
+          scope.step = this.step;
+          scope.navs.list[this.step] = navMapping.list[this.step];
+        }
       }
     };
 
@@ -139,12 +151,14 @@
     };
   }]);
 
-  app.controller('RestaurantCtrl', ['$scope', '$http', '$routeParams', 'SharedService', 'navMapping', function($scope, $http, $routeParams, SharedService, navMapping) {
+  app.controller('RestaurantCtrl', ['$scope', '$http', '$routeParams', '$location', 'SharedService', 'navMapping', function($scope, $http, $routeParams, $location, SharedService, navMapping) {
     SharedService.init($scope);
     
     //TODO: just back to the previous step
     SharedService.prepForBroadcast({
-      action: function(e) {}
+      action: function(e) {
+        SharedService.step = 0;
+      }
     }, 3);
 
     var url = "/restaurants/" + $routeParams.id;
@@ -152,6 +166,13 @@
     $http.get(url).success(function(data) {
       $scope.r = data.restaurant;
     });
+
+    $scope.restart = function(e) {
+      e.preventDefault();
+      SharedService.step = 0;
+      SharedService.prepForBroadcast();
+      $location.path('#');
+    }
   }]);
 
   app.controller('SearchCtrl', ['$scope', '$routeParams', function($scope, $routeParams) {

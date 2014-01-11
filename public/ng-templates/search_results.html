@@ -2,7 +2,7 @@
   <ul>
     <li ng-hide="restaurants.length > 0">暂时没找到匹配的， 亲！</li>
     <li ng-repeat="r in restaurants">
-      <a href="{{r.link}}" ng-click="selectRestaurant($event)">
+      <a href="#/restaurants/{{r.id}}">
         <span>{{r.name}}</span> <br>
         <span class="small">{{r.address}}, {{r.city}}</span>
       </a>
