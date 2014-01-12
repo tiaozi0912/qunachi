@@ -175,7 +175,17 @@
     }
   }]);
 
-  app.controller('SearchCtrl', ['$scope', '$routeParams', function($scope, $routeParams) {
+  app.controller('SearchCtrl', ['$scope', '$routeParams', '$location', 'SharedService', function($scope, $routeParams, $location, SharedService) {
+    SharedService.init($scope);
+    SharedService.prepForBroadcast({
+      link: "#",
+      action: function(e) {
+        e.preventDefault();
+        SharedService.step = 0;
+        $location.path(this.link);
+      }
+    }, 1);
+
     var keywords = $routeParams.keywords,
         url = '/restaurants/search';
 
