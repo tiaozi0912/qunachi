@@ -79,7 +79,8 @@
       when('/search/:keywords', {controller: 'SearchCtrl', templateUrl: '/ng-templates/search_results.html'}).
       otherwise({redirectTo: '/'});
   });
-
+  
+  //controllers start 
   app.controller('HeaderCtrl', ['$scope', '$location', 'SharedService', function($scope, $location, SharedService) {
     SharedService.init($scope);
 
