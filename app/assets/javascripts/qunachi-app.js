@@ -72,13 +72,13 @@
     return sharedObj;
   }]);
 
-  app.config(function($routeProvider) {
+  app.config(['$routeProvider', function($routeProvider) {
     $routeProvider.
       when('/', {controller: 'SelectCtrl', templateUrl: '/ng-templates/list.html'}).
       when('/restaurants/:id', {controller: 'RestaurantCtrl', templateUrl: '/ng-templates/restaurant.html'}).
       when('/search/:keywords', {controller: 'SearchCtrl', templateUrl: '/ng-templates/search_results.html'}).
       otherwise({redirectTo: '/'});
-  });
+  }]);
   
   //controllers start 
   app.controller('HeaderCtrl', ['$scope', '$location', 'SharedService', function($scope, $location, SharedService) {

@@ -33,5 +33,9 @@ Me::Application.configure do
   config.assets.compress = false
 
   # Expands the lines which load the assets
-  config.assets.debug = true
+  # Set true if wanna locally precompile assets
+  config.assets.debug = false
+  
+  # Don't set the path if wanna locally access the precompile assets
+  # config.assets.prefix = "/dev-assets"
 end
