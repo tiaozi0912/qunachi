@@ -24,4 +24,8 @@ class Restaurant < ActiveRecord::Base
   		:labels => labels
   	}
   end
+
+  def self.search keywords
+    self.where("category_name iLIKE ? or city_name iLIKE ? or name iLIKE ?", "%#{keywords}%", "%#{keywords}%", "%#{keywords}%")
+  end
 end

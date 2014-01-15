@@ -24,14 +24,15 @@
 
 <section class="select-restaurant" ng-show = "step == 2">
   <ul>
-    <li ng-hide="data.restaurants.length > 0">暂时没找到匹配的， 亲！</li>
-    <li ng-repeat="r in data.restaurants">
+    <li ng-hide="matchedRestaurants.length > 0">暂时没找到匹配的， 亲！</li>
+    <li ng-repeat="r in matchedRestaurants">
       <a href="{{r.link}}">
         <span>{{r.name}}</span> <br>
         <span class="small">{{r.address}}, {{r.city}}</span>
       </a>
     </li>
   </ul>
+  <a href="#" class="btn btn-block btn-primary" ng-click="restart($event)">重新搜索</a>
 </section>
 
 <script>

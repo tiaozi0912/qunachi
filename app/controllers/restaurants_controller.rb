@@ -4,9 +4,12 @@ class RestaurantsController < ApplicationController
   def index
     @city = params[:city]
     @category = params[:category]
-    @restaurants = Restaurant.where("city_name = ? AND category_name = ?", @city, @category)
+    @matched_restaurants = Restaurant.where("city_name = ? AND category_name = ?", @city, @category)
     render :json => {
-      :restaurants => @restaurants.map {|r| r.to_json}
+      :restaurants => {
+        :matched => @matched_restaurants.map {|r| r.to_json},
+        :suggested => []
+      }
     }
   end
 
@@ -21,7 +24,7 @@ class RestaurantsController < ApplicationController
   	# search category_name, city_name and name
   	@keywords = params[:keywords]
   	#@restaurants = Restaurant.all
-  	@restaurants = Restaurant.where("category_name iLIKE ? or city_name iLIKE ? or name iLIKE ?", "%#{@keywords}%", "%#{@keywords}%", "%#{@keywords}%")
+  	@restaurants = Restaurant.search @keywords
    	render :json => {
       :restaurants => @restaurants.map {|r| r.to_json}
     }
