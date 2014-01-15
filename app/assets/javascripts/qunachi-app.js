@@ -1,7 +1,6 @@
+window.qunachiApp = angular.module('qunachiApp', ['ngRoute']);
 (function() {
-  var app = angular.module('qunachiApp', []);
-
-  app.factory('navMapping', [function() {
+  qunachiApp.factory('navMapping', [function() {
 	  var map = {
 		  "菜系": "category",
 	  	"地点": "cities",
@@ -19,7 +18,7 @@
 	}]);
   
   //shared service for communicating between HeaderCtrl and other controllers
-  app.factory('SharedService', ['$rootScope', 'navMapping', function($rootScope, navMapping) {
+  qunachiApp.factory('SharedService', ['$rootScope', 'navMapping', function($rootScope, navMapping) {
     function onBroadcast(scope, sharedService) {
       scope.$on('nextStep', function() {
         scope.sharedService = sharedService;
@@ -72,7 +71,7 @@
     return sharedObj;
   }]);
 
-  app.config(['$routeProvider', function($routeProvider) {
+  qunachiApp.config(['$routeProvider', function($routeProvider) {
     $routeProvider.
       when('/', {controller: 'SelectCtrl', templateUrl: '/ng-templates/list.html'}).
       when('/restaurants/:id', {controller: 'RestaurantCtrl', templateUrl: '/ng-templates/restaurant.html'}).
@@ -81,7 +80,7 @@
   }]);
   
   //controllers start 
-  app.controller('HeaderCtrl', ['$scope', '$location', 'SharedService', function($scope, $location, SharedService) {
+  qunachiApp.controller('HeaderCtrl', ['$scope', '$location', 'SharedService', function($scope, $location, SharedService) {
     SharedService.init($scope);
 
     $scope.search = function(keywords) {
@@ -93,7 +92,7 @@
 
   }]);
 
-  app.controller('SelectCtrl', ['$scope', '$http', 'navMapping', 'SharedService', function($scope, $http, navMapping, SharedService) {
+  qunachiApp.controller('SelectCtrl', ['$scope', '$http', 'navMapping', 'SharedService', function($scope, $http, navMapping, SharedService) {
     function init() {
       var list = _.clone(navMapping.list);
       $scope.navs = {
@@ -152,7 +151,7 @@
     };
   }]);
 
-  app.controller('RestaurantCtrl', ['$scope', '$http', '$routeParams', '$location', 'SharedService', 'navMapping', function($scope, $http, $routeParams, $location, SharedService, navMapping) {
+  qunachiApp.controller('RestaurantCtrl', ['$scope', '$http', '$routeParams', '$location', 'SharedService', 'navMapping', function($scope, $http, $routeParams, $location, SharedService, navMapping) {
     SharedService.init($scope);
     
     //TODO: just back to the previous step
@@ -176,7 +175,7 @@
     }
   }]);
 
-  app.controller('SearchCtrl', ['$scope', '$routeParams', '$location', 'SharedService', function($scope, $routeParams, $location, SharedService) {
+  qunachiApp.controller('SearchCtrl', ['$scope', '$routeParams', '$location', 'SharedService', function($scope, $routeParams, $location, SharedService) {
     SharedService.init($scope);
     SharedService.prepForBroadcast({
       link: "#",
@@ -196,5 +195,4 @@
     });
 
   }]);
-
 })();

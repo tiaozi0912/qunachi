@@ -22,8 +22,7 @@
             %a.btn.btn-delete.btn-danger{:'ng-click' => 'delete(r, $event)', :href => '/admin/restaurants/{{r.id}}'} delete
 
 :javascript
-  angular.module('qunachiApp', [])
-    .controller('ctrl', ['$scope', function($scope) {
+  window.qunachiApp.controller('ctrl', ['$scope', function($scope) {
       var url = '/admin/restaurants/list';
 
       $.get(url, function(data) {
