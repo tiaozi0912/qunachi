@@ -3,7 +3,7 @@
     .pull-left
       %a{:href => "{{sharedService.backBtn.link}}", :"ng-show" => "sharedService.step > 0", :"ng-click" => "sharedService.backBtn.action($event)"} 
         %i.glyphicon.glyphicon-chevron-left
-    %span.logo-text 去哪吃
+    %a.logo-text.hover{:href => "/"} 去哪吃
     .pull-right
       .search-icon-container
         %i.glyphicon.glyphicon-search.icon{:"ng-click" => "showSearchInput = true", :"ng-hide" => "showSearchInput"}

@@ -16,7 +16,11 @@ header {
 	position: relative;
   
   .header-inner {
-  	padding: 12px 20px 0;
+  	padding: 11px 15px 0;
+
+    .logo-text {
+      color: white;
+    }
   }
 
   
@@ -40,11 +44,70 @@ header {
 
 .hover {
   cursor: pointer;
+
+  &:hover {
+    text-decoration: none;
+    opacity: 0.85;
+  }
+  &:active {
+    opacity: 1;
+  }
 }
 
 .search-input-container {
   z-index: 1050;
   position: absolute;
-  bottom: -30px;
+  bottom: -34px;
   left: 0;	
+
+  input, span {
+    border-radius: 0;
+  }
+
+  span {
+    &:hover {
+      color: $blue;
+    }
+    &:active {
+      color: $blue_heavy;
+    }
+  }
+
+  .form-control:hover {
+    border-color: #cccccc;
+    box-shadow: none;
+  }
+}
+
+.navbar {
+  margin-bottom: 0;
+  min-height: 40px;
+  
+  ul {
+    margin: 0;
+
+    li {
+      margin-top: 0;
+      margin-bottom: 0;
+      text-align: center;
+
+      a {
+        padding-top: 0;
+        padding-bottom: 0;
+        line-height: 35px;
+        white-space: nowrap;
+         overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      a.active:after {
+        content: "";
+        width: 50%;
+        height: 5px;
+        background-color: $orange;
+        display: block;
+        margin: 0 auto;
+      }
+    }
+  }
 }
