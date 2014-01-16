@@ -5,6 +5,7 @@
         %th name
         %th address
         %th category
+        %th yelp link
         %th description
         %th rating
         %th labels
@@ -13,6 +14,8 @@
         %td {{r.name}}
         %td {{r.address}}, {{r.city}}
         %td {{r.category}}
+        %td 
+          %a{:href => "{{r.yelp_link}}", :"ng-show" => "r.yelp_link"} link
         %td {{r.description}}
         %td {{r.rating}}
         %td 

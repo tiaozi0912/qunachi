@@ -1,26 +1,29 @@
 .container
   = form_for([:admin, @r], :html => {:class => "form-horizontal"}) do |f|
     .form-group
-      = f.label 'name'
+      = f.label 'Name'
       = f.text_field :name, :class => "form-control"
     .form-group
       = f.label 'English name'
-      = f.text_field :secondary_name, :class => "form-control", :placeholder => "optional"
+      = f.text_field :secondary_name, :class => "form-control", :placeholder => "Optional"
     .form-group
-      = f.label 'category'
+      = f.label 'Category'
       = f.select :category_name, options_for_select(Category.all.map(&:name), @r.category_name), {}, :class => 'form-control'
     .form-group
-      = f.label 'address'
+      = f.label 'Address'
       = f.text_field :address, :class => "form-control"
     .form-group
-      = f.label 'city'
+      = f.label 'City'
       = f.select :city_name, options_for_select(City.all.map(&:name), @r.city_name), {}, :class => "form-control"
     .form-group
-      = f.label 'description'
-      = f.text_field :description, :class => "form-control", :placeholder => "optional"
+      = f.label 'Yelp link'
+      = f.text_field :yelp_link, :class => "form-control", :placeholder => "Optional, start with http://"
     .form-group
-      = f.label 'labels'
-      = f.text_field :labels, :class => "form-control", :placeholder => "optional, separated with comma"
+      = f.label 'Description'
+      = f.text_field :description, :class => "form-control", :placeholder => "Optional"
+    .form-group
+      = f.label 'Labels'
+      = f.text_field :labels, :class => "form-control", :placeholder => "Optional, separated with comma"
     .form-group
       = f.submit "save", :class => "btn btn-primary"
       %a.btn{:href => "/admin/restaurants"} cancel

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140108054055) do
+ActiveRecord::Schema.define(:version => 20140116174007) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(:version => 20140108054055) do
     t.integer  "rating"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
+    t.text     "yelp_link"
   end
 
   add_index "restaurants", ["city_name", "category_name", "rating"], :name => "index_restaurants_on_city_and_category_and_rating"

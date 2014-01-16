@@ -9,6 +9,9 @@
 				{{r.address}}, {{r.city}}, {{r.state}}
 			</p>
 		</div>
+		<div>
+		  <a href="{{r.yelp_link}}" ng-show="r.yelp_link">See in Yelp</a>
+		</div>
 	</div>
   <a href="#" class="btn btn-block btn-primary" ng-click="restart($event)">重新搜索</a>
 </section>
