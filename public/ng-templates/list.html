@@ -32,6 +32,15 @@
       </a>
     </li>
   </ul>
+  <div class="text-center cell">或许你也感兴趣:</div>
+  <ul ng-show="showSuggestion">
+    <li ng-repeat="r in suggestedRestaurants">
+      <a href="{{r.link}}">
+        <span>{{r.name}}</span> <br>
+        <span class="small">{{r.address}}, {{r.city}}</span>
+      </a>
+    </li>
+  </ul>
   <a href="#" class="btn btn-block btn-primary" ng-click="restart($event)">重新搜索</a>
 </section>
 

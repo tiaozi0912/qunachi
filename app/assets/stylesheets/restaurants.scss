@@ -28,6 +28,10 @@
     }
 
     &.select-restaurant, &.search-results {
+      ul {
+        margin-bottom: 0;
+      }
+
       li {
         padding: 0;
 
@@ -36,6 +40,12 @@
           display: block;
           padding: $padding 0;
         }
+      }
+
+      .cell {
+        padding: 10px 0;
+        background-color: $cloud_heavy;
+        color: white
       }
     }
 

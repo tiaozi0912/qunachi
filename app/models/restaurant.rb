@@ -28,4 +28,10 @@ class Restaurant < ActiveRecord::Base
   def self.search keywords
     self.where("category_name iLIKE ? or city_name iLIKE ? or name iLIKE ?", "%#{keywords}%", "%#{keywords}%", "%#{keywords}%")
   end
+
+  def self.recommend city, category, excluded_restaurants
+    res = self.search(category).concat(self.search(city))
+    #puts excluded_restaurants.map(&:id)
+    res.reject {|r| excluded_restaurants.map(&:id).include?(r.id)}
+  end
 end

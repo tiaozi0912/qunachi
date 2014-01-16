@@ -104,6 +104,14 @@ window.qunachiApp = angular.module('qunachiApp', ['ngRoute']);
       $scope.step = 0;
     }
     
+    function showSuggestion(matchedR, suggestedR) {
+      if (suggestedR.length > 0) {
+        return matchedR.length < 6;
+      }
+
+      return false;
+    }
+
     SharedService.init($scope);
     init();
 
@@ -147,6 +155,8 @@ window.qunachiApp = angular.module('qunachiApp', ['ngRoute']);
           r.link = "#/restaurants/" + r.id;
         });
         $scope.matchedRestaurants = res.restaurants.matched;
+        $scope.suggestedRestaurants = res.restaurants.suggested;
+        $scope.showSuggestion = showSuggestion($scope.matchedRestaurants, $scope.suggestedRestaurants);
       });
     };
 
