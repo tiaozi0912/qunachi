@@ -26,7 +26,7 @@
   <ul>
     <li ng-hide="matchedRestaurants.length > 0">暂时没找到匹配的， 亲！</li>
     <li ng-repeat="r in matchedRestaurants">
-      <a href="{{r.link}}">
+      <a href="{{link(r)}}">
         <span>{{r.name}}</span> <br>
         <span class="small">{{r.address}}, {{r.city}}</span>
       </a>
@@ -35,7 +35,7 @@
   <div class="text-center cell">或许你也感兴趣:</div>
   <ul ng-show="showSuggestion">
     <li ng-repeat="r in suggestedRestaurants">
-      <a href="{{r.link}}">
+      <a href="{{link(r)}}">
         <span>{{r.name}}</span> <br>
         <span class="small">{{r.address}}, {{r.city}}</span>
       </a>

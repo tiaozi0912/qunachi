@@ -150,10 +150,6 @@ window.qunachiApp = angular.module('qunachiApp', ['ngRoute']);
       }, $scope.step);
 
       $http.get("/restaurants", {params: {city: $scope.selected.city.name, category: $scope.selected.category.name}}).success(function(res) {
-        //preprocess data
-        _.each(res.restaurants.matched, function(r) {
-          r.link = "#/restaurants/" + r.id;
-        });
         $scope.matchedRestaurants = res.restaurants.matched;
         $scope.suggestedRestaurants = res.restaurants.suggested;
         $scope.showSuggestion = showSuggestion($scope.matchedRestaurants, $scope.suggestedRestaurants);
@@ -164,6 +160,10 @@ window.qunachiApp = angular.module('qunachiApp', ['ngRoute']);
       e.preventDefault();
       init();
       SharedService.prepForBroadcast(null, $scope.step);
+    }
+
+    $scope.link = function(r) {
+      return '#/restaurants/' + r.id;
     }
   }]);
 
